@@ -1,0 +1,66 @@
+[BISPECTRUM]
+numTypes = 1
+twojmax = 6
+rcutfac = 4.5
+rfac0 = 0.99363
+rmin0 = 0.0
+wj = 1.0
+radelem = 0.5
+type = Li
+wselfallflag = 0
+chemflag = 0
+bzeroflag = 0
+quadraticflag = 0
+
+[CALCULATOR]
+calculator = LAMMPSSNAP
+energy = 1
+force = 1
+stress = 0
+
+[ESHIFT]
+Li = 0.0
+
+[SOLVER]
+solver = SVD
+compute_testerrs = 1
+detailed_errors = 1
+
+[SCRAPER]
+scraper = JSON
+
+[PATH]
+dataPath = ../../data/Li_Zuo2020_JPCA
+
+[OUTFILE]
+output_style = SNAP
+metrics = Li_metrics.md
+potential = Li_pot
+
+[REFERENCE]
+units = metal
+atom_style = atomic
+pair_style = zero 10.0
+pair_coeff = * *
+#pair_style = hybrid/overlay zero 5.0 zbl 4.0 4.8
+#pair_coeff1 = * * zero
+#pair_coeff2 = * * zbl 14 14
+
+[GROUPS]
+# name size eweight fweight vweight
+group_sections = name training_size testing_size eweight fweight vweight
+group_types = str float float float float float
+smartweights = 0
+random_sampling = 0
+AIMD =       0.9    0.1    1e-2 1e0     1.00E-08
+Elastic =    0.9    0.1    1e-2 1e0     1.00E-08
+Surface =    0.9    0.1    1e-2 1e0     1.00E-08
+Vacancy   =  0.9    0.1    1e-2 1e0     1.00E-08
+
+[EXTRAS]
+dump_descriptors = 0
+dump_truth = 0
+dump_weights = 0
+
+[MEMORY]
+override = 0

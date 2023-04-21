@@ -1,0 +1,80 @@
+# Ground state crystal
+{
+  "Dataset": {
+    "AtomTypeStyle": "chemicalsymbol",
+    "Data": [
+      {
+        "AtomTypes": [
+          "Li",
+          "Li"
+        ],
+        "Energy": -3.79784039,
+        "Forces": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            -0.0,
+            -0.0,
+            -0.0
+          ]
+        ],
+        "Lattice": [
+          [
+            3.426817,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            3.426817,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            3.426817
+          ]
+        ],
+        "NumAtoms": 2,
+        "Positions": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            1.7134085,
+            1.7134085,
+            1.7134085
+          ]
+        ],
+        "Stress": [
+          [
+            1.52963439,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.52963439,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.52963439
+          ]
+        ]
+      }
+    ],
+    "EnergyStyle": "electronvolt",
+    "ForcesStyle": "electronvoltperangstrom",
+    "Label": "Ground state crystal",
+    "LatticeStyle": "angstrom",
+    "PositionsStyle": "angstrom",
+    "StressStyle": "kB"
+  }
+}

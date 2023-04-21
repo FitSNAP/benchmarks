@@ -1,0 +1,80 @@
+# Li 1x1x1 cell, mode 4, strain -0.01
+{
+  "Dataset": {
+    "AtomTypeStyle": "chemicalsymbol",
+    "Data": [
+      {
+        "AtomTypes": [
+          "Li",
+          "Li"
+        ],
+        "Energy": -3.79728684,
+        "Forces": [
+          [
+            0.0,
+            -0.0,
+            -0.0
+          ],
+          [
+            -0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "Lattice": [
+          [
+            3.426817,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            3.426817,
+            0.0
+          ],
+          [
+            0.0,
+            -0.068536,
+            3.426132
+          ]
+        ],
+        "NumAtoms": 2,
+        "Positions": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            1.7134085,
+            1.6791405,
+            1.713066
+          ]
+        ],
+        "Stress": [
+          [
+            1.57716596,
+            0.0,
+            0.3959567
+          ],
+          [
+            0.0,
+            1.59318662,
+            0.0
+          ],
+          [
+            0.3959567,
+            0.0,
+            1.60902837
+          ]
+        ]
+      }
+    ],
+    "EnergyStyle": "electronvolt",
+    "ForcesStyle": "electronvoltperangstrom",
+    "Label": "Li 1x1x1 cell, mode 4, strain -0.01",
+    "LatticeStyle": "angstrom",
+    "PositionsStyle": "angstrom",
+    "StressStyle": "kB"
+  }
+}

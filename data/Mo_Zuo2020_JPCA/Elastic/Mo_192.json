@@ -1,0 +1,80 @@
+# Mo 3x3x3 cell relaxed
+{
+  "Dataset": {
+    "AtomTypeStyle": "chemicalsymbol",
+    "Data": [
+      {
+        "AtomTypes": [
+          "Mo",
+          "Mo"
+        ],
+        "Energy": -21.69715587,
+        "Forces": [
+          [
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "Lattice": [
+          [
+            3.16977584,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            3.16977584,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            3.16977584
+          ]
+        ],
+        "NumAtoms": 2,
+        "Positions": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            1.58488792,
+            1.58488792,
+            1.58488792
+          ]
+        ],
+        "Stress": [
+          [
+            -0.84973,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.84973,
+            -0.0
+          ],
+          [
+            0.0,
+            -0.0,
+            -0.84973
+          ]
+        ]
+      }
+    ],
+    "EnergyStyle": "electronvolt",
+    "ForcesStyle": "electronvoltperangstrom",
+    "Label": "Mo 3x3x3 cell relaxed",
+    "LatticeStyle": "angstrom",
+    "PositionsStyle": "angstrom",
+    "StressStyle": "kB"
+  }
+}
