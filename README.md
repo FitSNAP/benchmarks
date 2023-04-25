@@ -16,7 +16,7 @@ Training data is stored in the `data` directory.
 
 ### Instructions on fitting and benchmarking
 
-First activate your Python environment:
+First activate your Python environment, e.g.
 
     source ~/venv-fitsnap-pace/bin/activate
 
@@ -26,10 +26,10 @@ Proceed into a `<potential>/<system>` directory and run a fit with:
 
 Obtain CPU benchmarks on a 10x10x10 unit cell system with:
 
-    mpirun -np P ~/lammps_compute_PACE/build-fitsnap/lmp -in in.run -v nrep 10
+    mpirun -np P lmp -in in.run -v nrep 10
 
-Obtain GPU/Kokkos benchmarks on a 10x10x10 unit cell system with:
+Obtain GPU/Kokkos benchmarks on a 10x10x10 unit cell system with (e.g. using 2 GPUs):
 
-    mpirun -np 2 ~/lammps_compute_PACE/build-kokkos/lmp -k on g 2 -sf kk -pk kokkos newton on neigh half -in in.run -v nrep 10
+    mpirun -np 2 lmp -k on g 2 -sf kk -pk kokkos newton on neigh half -in in.run -v nrep 10
 
   

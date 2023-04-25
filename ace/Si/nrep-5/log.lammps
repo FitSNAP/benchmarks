@@ -1,0 +1,127 @@
+LAMMPS (15 Sep 2022)
+KOKKOS mode is enabled (src/KOKKOS/kokkos.cpp:106)
+  will use up to 2 GPU(s) per node
+WARNING: When using a single thread, the Kokkos Serial backend (i.e. Makefile.kokkos_mpi_only) gives better performance than the OpenMP backend (src/KOKKOS/kokkos.cpp:234)
+WARNING: Turning off GPU-aware MPI since it is not detected, use '-pk kokkos gpu/aware on' to override (src/KOKKOS/kokkos.cpp:310)
+  using 1 OpenMP thread(s) per MPI task
+package kokkos
+package kokkos newton on neigh half
+# Initialize simulation
+
+variable nsteps index 100
+#variable nrep equal 10
+variable a equal 5.431
+units           metal
+
+# generate the box and atom positions using a BCC lattice
+
+variable nx equal ${nrep}
+variable nx equal 5
+variable ny equal ${nrep}
+variable ny equal 5
+variable nz equal ${nrep}
+variable nz equal 5
+
+boundary        p p p
+
+lattice         diamond $a
+lattice         diamond 5.431
+Lattice spacing in x,y,z = 5.431 5.431 5.431
+region          box block 0 ${nx} 0 ${ny} 0 ${nz}
+region          box block 0 5 0 ${ny} 0 ${nz}
+region          box block 0 5 0 5 0 ${nz}
+region          box block 0 5 0 5 0 5
+create_box      1 box
+Created orthogonal box = (0 0 0) to (27.155 27.155 27.155)
+  1 by 1 by 2 MPI processor grid
+create_atoms    1 box
+Created 1000 atoms
+  using lattice units in orthogonal box = (0 0 0) to (27.155 27.155 27.155)
+  create_atoms CPU = 0.001 seconds
+
+mass 1 28
+
+# specify potential
+
+#include Si_pot.mod
+pair_style pace product
+ACE version: 2022.6.27
+Product evaluator is used
+pair_coeff * * Si_pot.yace Si
+Loading Si_pot.yace
+Total number of basis functions
+	Si: 16 (r=1) 44 (r>1)
+Mapping LAMMPS atom type #1(Si) -> ACE species type #0
+
+thermo_style custom step temp epair etotal press
+thermo          10
+thermo_modify norm yes
+
+# Set up NVE run
+
+timestep 0.5e-3
+neighbor 1.0 bin
+neigh_modify once no every 1 delay 0 check yes
+
+# Run MD
+
+velocity all create 1200.0 4928459 loop geom
+#dump 1 all xyz 10 dump.xyz
+fix 1 all nve
+run             ${nsteps}
+run             100
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 5.5
+  ghost atom cutoff = 5.5
+  binsize = 5.5, bins = 5 5 5
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair pace/kk, perpetual
+      attributes: full, newton on, kokkos_device
+      pair build: full/bin/kk/device
+      stencil: full/bin/3d
+      bin: kk/device
+Per MPI rank memory allocation (min/avg/max) = 130.5 | 130.5 | 130.5 Mbytes
+   Step          Temp          E_pair         TotEng         Press     
+         0   1200          -5.3847866     -5.2298295      31649.797    
+        10   1071.7393     -5.3682183     -5.2298236      35008.91     
+        20   767.52766     -5.3289188     -5.2298072      38277.186    
+        30   477.92892     -5.2915084     -5.229793       40203.71     
+        40   364.04715     -5.2768028     -5.2297931      39223.556    
+        50   429.72007     -5.2852931     -5.229803       35708.521    
+        60   561.36499     -5.3023014     -5.2298118      31656.07     
+        70   648.63857     -5.3135749     -5.2298157      28741.13     
+        80   639.6842      -5.3124178     -5.2298148      27686.109    
+        90   542.83203     -5.2999069     -5.2298105      28392.176    
+       100   411.47331     -5.2829384     -5.2298045      30020.107    
+Loop time of 0.123484 on 2 procs for 100 steps with 1000 atoms
+
+Performance: 34.984 ns/day, 0.686 hours/ns, 809.823 timesteps/s, 809.823 katom-step/s
+99.7% CPU use with 2 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.10558    | 0.10559    | 0.1056     |   0.0 | 85.51
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0.0095989  | 0.0096132  | 0.0096275  |   0.0 |  7.78
+Output  | 0.00038471 | 0.00040327 | 0.00042184 |   0.0 |  0.33
+Modify  | 0.0041402  | 0.0041683  | 0.0041963  |   0.0 |  3.38
+Other   |            | 0.003709   |            |       |  3.00
+
+Nlocal:            500 ave         500 max         500 min
+Histogram: 2 0 0 0 0 0 0 0 0 0
+Nghost:           1507 ave        1507 max        1507 min
+Histogram: 2 0 0 0 0 0 0 0 0 0
+Neighs:              0 ave           0 max           0 min
+Histogram: 2 0 0 0 0 0 0 0 0 0
+FullNghs:        17000 ave       17000 max       17000 min
+Histogram: 2 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 34000
+Ave neighs/atom = 34
+Neighbor list builds = 0
+Dangerous builds = 0
+
+Total wall time: 0:00:01
