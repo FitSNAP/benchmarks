@@ -1,0 +1,65 @@
+[ACE]
+numTypes = 1
+ranks = 1 2 3
+lmax =  1 1 1
+nmax = 2 2 1
+nmaxbase = 2
+rcutfac = 4.5
+lambda = 3.059235105
+type = Ge
+lmin = 0
+bzeroflag = 0
+RPI_heuristic = root_SO3_span
+
+[CALCULATOR]
+calculator = LAMMPSPACE
+energy = 1
+force = 1
+stress = 0
+
+[ESHIFT]
+Ge = 0.0
+
+[SOLVER]
+solver = SVD
+compute_testerrs = 1
+detailed_errors = 1
+
+[SCRAPER]
+scraper = JSON
+
+[PATH]
+dataPath = ../../../data/Ge_Zuo2020_JPCA
+
+[OUTFILE]
+output_style = PACE
+metrics = Ge_metrics.md
+potential = Ge_pot
+
+[REFERENCE]
+units = metal
+atom_style = atomic
+pair_style = zero 10.0
+pair_coeff = * *
+#pair_style = hybrid/overlay zero 5.0 zbl 4.0 4.8
+#pair_coeff1 = * * zero
+#pair_coeff2 = * * zbl 14 14
+
+[GROUPS]
+# name size eweight fweight vweight
+group_sections = name training_size testing_size eweight fweight vweight
+group_types = str float float float float float
+smartweights = 0
+random_sampling = 0
+AIMD =       0.9    0.1    1e-2 1e0     1.00E-08
+Elastic =    0.9    0.1    1e-2 1e0     1.00E-08
+Surface =    0.9    0.1    1e-2 1e0     1.00E-08
+Vacancy   =  0.9    0.1    1e-2 1e0     1.00E-08
+
+[EXTRAS]
+dump_descriptors = 0
+dump_truth = 0
+dump_weights = 0
+
+[MEMORY]
+override = 0
