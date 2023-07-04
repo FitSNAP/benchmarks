@@ -103,26 +103,33 @@ def write2xyz(s, namemap):
         groupname += "_test"
 
     if groupname not in namemap:
-        namemap[groupname] = open(f"{groupname}.xyz", 'w')
+        namemap[groupname] = open(f"{groupname}.extxyz", 'w')
     
     fh = namemap[groupname]
 
     # Write the header for this structure.
     natoms = s['NumAtoms']
     fh.write(f"{natoms}\n")
+    # Lattice = "10.6000003815 0.0 0.0 0.0 10.6000003815 0.0 0.0 0.0 10.6000003815" Properties=species:S:1:pos:R:3:forces:R:3 energy=-754.220443 stress="23963.03 -518.08 331.99 -518.08 26158.899999999998 289.93 331.99 289.93 26014.94"
+    #print(s['Lattice'])
     lat = s['Lattice']
     st = s['Stress'] # Stress tensor
     x = s['Positions']
     f = s['Forces']
     types = s['AtomTypes']
     header = f'Lattice = "{lat[0,0]} {lat[0,1]} {lat[0,2]} {lat[1,0]} {lat[1,1]} {lat[1,2]} {lat[2,0]} {lat[2,1]} {lat[2,2]}"'
+    header += f' pbc="T T T"'
     header += ' Properties=species:S:1:pos:R:3:forces:R:3'
     header += f' energy={s["Energy"]}'
     header += f' stress="{st[0,0]} {st[0,1]} {st[0,2]} {st[1,0]} {st[1,1]} {st[1,2]} {st[2,0]} {st[2,1]} {st[2,2]}"\n'
     fh.write(header)
 
+
     for n in range(natoms):
         fh.write(f"{types[n]} {x[n,0]} {x[n,1]} {x[n,2]} {f[n,0]} {f[n,1]} {f[n,2]}\n")
+        
+    #assert(False)
+
 
 namemap = {}
 for s in fs.data:
