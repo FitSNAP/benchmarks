@@ -117,7 +117,8 @@ def write2xyz(s, namemap):
     x = s['Positions']
     f = s['Forces']
     types = s['AtomTypes']
-    header = f'Lattice = "{lat[0,0]} {lat[0,1]} {lat[0,2]} {lat[1,0]} {lat[1,1]} {lat[1,2]} {lat[2,0]} {lat[2,1]} {lat[2,2]}"'
+    #header = f'Lattice="{lat[0,0]} {lat[0,1]} {lat[0,2]} {lat[1,0]} {lat[1,1]} {lat[1,2]} {lat[2,0]} {lat[2,1]} {lat[2,2]}"'
+    header = f'Lattice="{lat[0,0]} {lat[1,0]} {lat[2,0]} {lat[0,1]} {lat[1,1]} {lat[2,1]} {lat[0,2]} {lat[1,2]} {lat[2,2]}"'
     header += f' pbc="T T T"'
     header += ' Properties=species:S:1:pos:R:3:forces:R:3'
     header += f' energy={s["Energy"]}'
